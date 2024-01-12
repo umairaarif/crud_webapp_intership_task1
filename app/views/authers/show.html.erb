@@ -1,0 +1,32 @@
+<h1>Auther Name</h1>
+
+<p><%= @auther.name %></p>
+<ul>
+  <li><%= link_to "Edit", edit_auther_path(@auther) %></li>
+  <li><%= link_to "Destroy", auther_path(@auther), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
+<h2>Auther Books</h2>
+
+
+<% @auther.books.each do |book| %>
+  <p>
+    <strong>Book Name:</strong>
+    <%= book.bookname %>
+  </p>
+
+<% end %>
+
+<h2>Add a book:</h2>
+<%= form_with model: [ @auther, @auther.books.build ] do |form| %>
+  <p>
+    <%= form.label :bookname %><br>
+    <%= form.text_field :bookname %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
